@@ -30,16 +30,6 @@ const onRequest = (request, response) => {
   // and parse them into a reusable object by field name
   const params = query.parse(parsedUrl.query);
 
-  //some sort of switch statment
-  switch (request.url) {
-      case "/style.css":
-          break;
-  
-      default:
-          break;
-  }
-
-
   // check if the path name (the /name part of the url) matches
   // any in our url object. If so call that function. If not, default to index.
   if (urlStruct[parsedUrl.pathname]) {
@@ -47,6 +37,17 @@ const onRequest = (request, response) => {
   } else {
     urlStruct.notFound(request, response, params);
   }
+  
+  // check the params for required content
+  if ('valid' in params){
+    if (params.valid) jsonHandler.success
+    else jsonHandler.badRequest
+  }
+  if('loggedin' in params){
+    if(params.loggedin == 'yes') jsonHandler.success
+    else jsonHandler.unauthorized
+  }
+
 };
 
 // start HTTP server

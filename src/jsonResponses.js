@@ -42,6 +42,27 @@ const badRequest = (request, response, params) => {
   return respondJSON(request, response, 200, responseJSON);
 };
 
+const unauthorized = (request, response) => {
+  const responseJSON = {
+    message: 'You are not authorized to access this content',
+  };
+
+    // send our json with a success status code
+  respondJSON(request, response, 401, responseJSON);
+};
+
+const forbidden = (request, response) => {
+  
+};
+
+const internal = (request, response) => {
+  
+};
+
+const notImplemented = (request, response) => {
+  
+};
+
   // function to show not found error
 const notFound = (request, response) => {
   // error message with a description and consistent error id
